@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 18% 97%;
+    --foreground: 222 47% 8%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 8%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 8%;
+    --primary: 166 86% 36%;
+    --primary-foreground: 164 100% 97%;
+    --secondary: 204 96% 92%;
+    --secondary-foreground: 222 47% 10%;
+    --muted: 215 25% 91%;
+    --muted-foreground: 215 16% 38%;
+    --accent: 184 89% 44%;
+    --accent-foreground: 222 47% 8%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 214 26% 86%;
+    --input: 214 26% 86%;
+    --ring: 166 86% 36%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 224 32% 5%;
+    --foreground: 180 30% 96%;
+    --card: 220 28% 8%;
+    --card-foreground: 180 30% 96%;
+    --popover: 220 28% 8%;
+    --popover-foreground: 180 30% 96%;
+    --primary: 160 84% 47%;
+    --primary-foreground: 164 100% 6%;
+    --secondary: 217 29% 14%;
+    --secondary-foreground: 180 30% 96%;
+    --muted: 216 24% 15%;
+    --muted-foreground: 218 14% 68%;
+    --accent: 189 94% 49%;
+    --accent-foreground: 224 32% 5%;
+    --destructive: 0 75% 58%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 216 22% 18%;
+    --input: 216 22% 18%;
+    --ring: 160 84% 47%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply text-foreground;
+    overflow-x: hidden;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply border border-white/10 bg-white/[0.055] shadow-card backdrop-blur-2xl;
+  }
+
+  .light .glass {
+    @apply border-slate-200/70 bg-white/80;
+  }
+
+  .mesh-bg {
+    background:
+      radial-gradient(circle at 8% 12%, rgba(16, 185, 129, 0.2), transparent 28%),
+      radial-gradient(circle at 80% 4%, rgba(34, 211, 238, 0.18), transparent 25%),
+      linear-gradient(135deg, rgba(4, 12, 18, 1) 0%, rgba(6, 14, 17, 1) 48%, rgba(2, 8, 14, 1) 100%);
+  }
+
+  .light .mesh-bg {
+    background:
+      radial-gradient(circle at 8% 12%, rgba(16, 185, 129, 0.17), transparent 26%),
+      radial-gradient(circle at 80% 4%, rgba(34, 211, 238, 0.18), transparent 25%),
+      linear-gradient(135deg, #f8fafc 0%, #eefcf9 48%, #f7fbff 100%);
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-emerald-300 via-cyan-200 to-sky-300 bg-clip-text text-transparent;
+  }
+
+  .light .gradient-text {
+    @apply from-emerald-600 via-cyan-600 to-sky-600;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
