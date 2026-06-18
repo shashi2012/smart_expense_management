@@ -63,22 +63,22 @@ export function AnalyticsCharts({ expenses }: { expenses: Expense[] }) {
               <CardTitle>Category Spend</CardTitle>
               <CardDescription>Pie chart by expense category.</CardDescription>
             </div>
-            <ChartPie className="h-5 w-5 text-emerald-300" />
+            <ChartPie className="h-5 w-5 shrink-0 text-emerald-300" />
           </div>
         </CardHeader>
         <CardContent>
           {!hasData ? (
             <EmptyState title="No chart data yet." description="Add an expense to see category analytics." />
           ) : (
-            <div className="h-[300px]">
+            <div className="h-[240px] sm:h-[300px]">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
                     data={categoryTotals}
                     dataKey="amount"
                     nameKey="category"
-                    innerRadius={62}
-                    outerRadius={106}
+                    innerRadius="52%"
+                    outerRadius="78%"
                     paddingAngle={4}
                     animationBegin={80}
                     animationDuration={900}
@@ -107,11 +107,11 @@ export function AnalyticsCharts({ expenses }: { expenses: Expense[] }) {
               <CardTitle>Monthly Expenses</CardTitle>
               <CardDescription>Six-month spending bar chart.</CardDescription>
             </div>
-            <BarChart3 className="h-5 w-5 text-cyan-300" />
+            <BarChart3 className="h-5 w-5 shrink-0 text-cyan-300" />
           </div>
         </CardHeader>
         <CardContent>
-          <div className="h-[300px]">
+          <div className="h-[240px] sm:h-[300px]">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={monthlyTotals} margin={{ top: 8, right: 8, left: -20, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.08)" vertical={false} />
@@ -142,14 +142,14 @@ export function AnalyticsCharts({ expenses }: { expenses: Expense[] }) {
               <CardTitle>Expense Trends</CardTitle>
               <CardDescription>Recent transaction trend line.</CardDescription>
             </div>
-            <TrendingUp className="h-5 w-5 text-sky-300" />
+            <TrendingUp className="h-5 w-5 shrink-0 text-sky-300" />
           </div>
         </CardHeader>
         <CardContent>
           {!hasData ? (
             <EmptyState title="No trends yet." description="Your spending trend appears after the first expense." />
           ) : (
-            <div className="h-[300px]">
+            <div className="h-[240px] sm:h-[300px]">
               <ResponsiveContainer width="100%" height="100%">
                 <AreaChart data={trendData} margin={{ top: 8, right: 8, left: -20, bottom: 0 }}>
                   <defs>

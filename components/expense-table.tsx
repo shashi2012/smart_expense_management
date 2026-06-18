@@ -63,7 +63,7 @@ export function ExpenseTable({
               <CardTitle>Expense Table</CardTitle>
               <CardDescription>Search, filter, import, export, and delete transactions.</CardDescription>
             </div>
-            <div className="flex flex-wrap gap-2">
+            <div className="grid gap-2 sm:flex sm:flex-wrap">
               <input
                 ref={inputRef}
                 type="file"
@@ -75,11 +75,11 @@ export function ExpenseTable({
                   event.currentTarget.value = "";
                 }}
               />
-              <Button type="button" variant="secondary" onClick={() => inputRef.current?.click()} className="group">
+              <Button type="button" variant="secondary" onClick={() => inputRef.current?.click()} className="group w-full sm:w-auto">
                 <Upload className="h-4 w-4" />
                 Import
               </Button>
-              <Button type="button" variant="secondary" onClick={onExport} className="group">
+              <Button type="button" variant="secondary" onClick={onExport} className="group w-full sm:w-auto">
                 <Download className="h-4 w-4" />
                 CSV Export
               </Button>
@@ -115,51 +115,86 @@ export function ExpenseTable({
           {filteredExpenses.length === 0 ? (
             <EmptyState />
           ) : (
-            <div className="overflow-hidden rounded-lg border border-white/10 light:border-slate-200">
-              <div className="w-full overflow-x-auto">
-                <table className="w-full min-w-[720px] text-left text-sm">
-                  <thead className="bg-white/[0.06] text-xs uppercase tracking-[0.12em] text-muted-foreground">
-                    <tr>
-                      <th className="px-4 py-4 font-medium">Date</th>
-                      <th className="px-4 py-4 font-medium">Category</th>
-                      <th className="px-4 py-4 font-medium">Description</th>
-                      <th className="px-4 py-4 text-right font-medium">Amount</th>
-                      <th className="px-4 py-4 text-right font-medium">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-white/10 light:divide-slate-200">
-                    {filteredExpenses.map((expense) => (
-                      <motion.tr
-                        key={expense.id}
-                        layout
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="transition-colors hover:bg-white/[0.045]"
+            <>
+              <div className="grid gap-3 md:hidden">
+                {filteredExpenses.map((expense) => (
+                  <motion.article
+                    key={expense.id}
+                    layout
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="rounded-lg border border-white/10 bg-white/[0.04] p-3 light:border-slate-200 light:bg-slate-50"
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <p className="break-words text-sm font-semibold">{expense.description}</p>
+                        <p className="mt-1 text-xs text-muted-foreground">{formatDate(expense.date)}</p>
+                      </div>
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="icon"
+                        aria-label={`Delete ${expense.description}`}
+                        onClick={() => onDelete(expense.id)}
+                        className="shrink-0"
                       >
-                        <td className="px-4 py-4 text-muted-foreground">{formatDate(expense.date)}</td>
-                        <td className="px-4 py-4">
-                          <CategoryPill category={expense.category} compact />
-                        </td>
-                        <td className="px-4 py-4 font-medium">{expense.description}</td>
-                        <td className="px-4 py-4 text-right font-semibold">{formatCurrency(expense.amount)}</td>
-                        <td className="px-4 py-4 text-right">
-                          <Button
-                            type="button"
-                            variant="ghost"
-                            size="icon"
-                            aria-label={`Delete ${expense.description}`}
-                            onClick={() => onDelete(expense.id)}
-                          >
-                            <Trash2 className="h-4 w-4 text-red-300" />
-                          </Button>
-                        </td>
-                      </motion.tr>
-                    ))}
-                  </tbody>
-                </table>
+                        <Trash2 className="h-4 w-4 text-red-300" />
+                      </Button>
+                    </div>
+                    <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+                      <CategoryPill category={expense.category} compact />
+                      <span className="text-sm font-semibold">{formatCurrency(expense.amount)}</span>
+                    </div>
+                  </motion.article>
+                ))}
               </div>
-            </div>
+              <div className="hidden overflow-hidden rounded-lg border border-white/10 light:border-slate-200 md:block">
+                <div className="w-full overflow-x-auto">
+                  <table className="w-full min-w-[720px] text-left text-sm">
+                    <thead className="bg-white/[0.06] text-xs uppercase tracking-[0.12em] text-muted-foreground">
+                      <tr>
+                        <th className="px-4 py-4 font-medium">Date</th>
+                        <th className="px-4 py-4 font-medium">Category</th>
+                        <th className="px-4 py-4 font-medium">Description</th>
+                        <th className="px-4 py-4 text-right font-medium">Amount</th>
+                        <th className="px-4 py-4 text-right font-medium">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-white/10 light:divide-slate-200">
+                      {filteredExpenses.map((expense) => (
+                        <motion.tr
+                          key={expense.id}
+                          layout
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          className="transition-colors hover:bg-white/[0.045]"
+                        >
+                          <td className="px-4 py-4 text-muted-foreground">{formatDate(expense.date)}</td>
+                          <td className="px-4 py-4">
+                            <CategoryPill category={expense.category} compact />
+                          </td>
+                          <td className="px-4 py-4 font-medium">{expense.description}</td>
+                          <td className="px-4 py-4 text-right font-semibold">{formatCurrency(expense.amount)}</td>
+                          <td className="px-4 py-4 text-right">
+                            <Button
+                              type="button"
+                              variant="ghost"
+                              size="icon"
+                              aria-label={`Delete ${expense.description}`}
+                              onClick={() => onDelete(expense.id)}
+                            >
+                              <Trash2 className="h-4 w-4 text-red-300" />
+                            </Button>
+                          </td>
+                        </motion.tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </>
           )}
         </CardContent>
       </Card>

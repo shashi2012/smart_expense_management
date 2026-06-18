@@ -100,7 +100,7 @@ export function SubscriptionTracker({ subscriptions, onAdd, onDelete }: Subscrip
                 </SelectContent>
               </Select>
             </div>
-            <Button type="submit" className="group self-end">
+            <Button type="submit" className="group self-end w-full lg:w-auto">
               Add
             </Button>
           </form>
@@ -114,8 +114,8 @@ export function SubscriptionTracker({ subscriptions, onAdd, onDelete }: Subscrip
                 className="rounded-lg border border-white/10 bg-white/[0.04] p-4 light:border-slate-200 light:bg-slate-50"
               >
                 <div className="flex items-start justify-between gap-3">
-                  <div>
-                    <p className="font-semibold">{subscription.name}</p>
+                  <div className="min-w-0">
+                    <p className="break-words font-semibold">{subscription.name}</p>
                     <p className="mt-1 text-sm text-muted-foreground">{formatCurrency(subscription.amount)} / month</p>
                   </div>
                   <Button type="button" variant="ghost" size="icon" onClick={() => onDelete(subscription.id)} aria-label={`Delete ${subscription.name}`}>

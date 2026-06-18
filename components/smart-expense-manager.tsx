@@ -169,26 +169,26 @@ export function SmartExpenseManager() {
         variants={pageVariants}
         initial="hidden"
         animate="show"
-        className="relative mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-4 py-5 sm:px-6 lg:px-8"
+        className="relative mx-auto flex w-full max-w-[1440px] flex-col gap-5 px-3 py-4 sm:gap-8 sm:px-6 sm:py-5 lg:px-8"
       >
-        <motion.header variants={itemVariants} className="flex flex-col gap-4 rounded-lg border border-white/10 bg-white/[0.045] p-4 backdrop-blur-xl md:flex-row md:items-center md:justify-between">
-          <div className="flex items-center gap-3">
-            <div className="rounded-md bg-gradient-to-br from-emerald-300 to-cyan-300 p-3 text-slate-950 shadow-glow">
+        <motion.header variants={itemVariants} className="flex flex-col gap-4 rounded-lg border border-white/10 bg-white/[0.045] p-3 backdrop-blur-xl sm:p-4 md:flex-row md:items-center md:justify-between">
+          <div className="flex min-w-0 items-center gap-3">
+            <div className="shrink-0 rounded-md bg-gradient-to-br from-emerald-300 to-cyan-300 p-2.5 text-slate-950 shadow-glow sm:p-3">
               <Wallet className="h-6 w-6" />
             </div>
-            <div>
-              <h1 className="text-xl font-semibold tracking-normal sm:text-2xl">Smart Expense Manager</h1>
+            <div className="min-w-0">
+              <h1 className="text-lg font-semibold tracking-normal sm:text-2xl">Smart Expense Manager</h1>
               <p className="text-sm text-muted-foreground">Track • Analyze • Save Smarter</p>
             </div>
           </div>
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="grid grid-cols-[1fr_auto] items-center gap-2 sm:flex sm:flex-wrap">
             <Badge className="border-emerald-300/20 bg-emerald-300/10 text-emerald-100">
               Local-first
             </Badge>
             <Button type="button" variant="secondary" size="icon" aria-label="Toggle theme" onClick={toggleTheme}>
               {isLight ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
             </Button>
-            <Button asChild className="group">
+            <Button asChild className="group col-span-2 w-full sm:col-span-1 sm:w-auto">
               <a href="https://digitalheroesco.com" target="_blank" rel="noreferrer">
                 Built for Digital Heroes
                 <ArrowUpRight className="h-4 w-4" />
@@ -198,29 +198,29 @@ export function SmartExpenseManager() {
         </motion.header>
 
         <motion.section variants={itemVariants} className="grid gap-5 lg:grid-cols-[1.18fr_0.82fr]">
-          <div className="flex min-h-[360px] flex-col justify-between rounded-lg border border-white/10 bg-slate-950/30 p-6 shadow-card backdrop-blur-2xl light:bg-white/70 sm:p-8">
+          <div className="flex min-h-[320px] flex-col justify-between rounded-lg border border-white/10 bg-slate-950/30 p-4 shadow-card backdrop-blur-2xl light:bg-white/70 sm:min-h-[360px] sm:p-8">
             <div>
               <Badge className="mb-5 border-cyan-300/20 bg-cyan-300/10 text-cyan-100">
                 Premium finance dashboard
               </Badge>
-              <h2 className="max-w-3xl text-4xl font-semibold tracking-normal sm:text-5xl lg:text-6xl">
+              <h2 className="max-w-3xl text-3xl font-semibold tracking-normal sm:text-5xl lg:text-6xl">
                 Spend with clarity. <span className="gradient-text">Save with confidence.</span>
               </h2>
-              <p className="mt-5 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
+              <p className="mt-4 max-w-2xl text-sm leading-6 text-muted-foreground sm:mt-5 sm:text-lg sm:leading-7">
                 A tool for tracking expenses, understanding category trends, managing budgets, and surfacing actionable spending insights.
               </p>
             </div>
             <div className="mt-8 grid gap-3 sm:grid-cols-3">
               <div className="rounded-lg border border-white/10 bg-white/[0.055] p-4 light:border-slate-200 light:bg-white">
-                <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">Monthly Budget</p>
+                <p className="text-xs uppercase tracking-normal text-muted-foreground sm:tracking-[0.14em]">Monthly Budget</p>
                 <p className="mt-2 text-xl font-semibold">{formatCurrency(budget.monthly)}</p>
               </div>
               <div className="rounded-lg border border-white/10 bg-white/[0.055] p-4 light:border-slate-200 light:bg-white">
-                <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">Transactions</p>
+                <p className="text-xs uppercase tracking-normal text-muted-foreground sm:tracking-[0.14em]">Transactions</p>
                 <p className="mt-2 text-xl font-semibold">{expenses.length}</p>
               </div>
               <div className="rounded-lg border border-white/10 bg-white/[0.055] p-4 light:border-slate-200 light:bg-white">
-                <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">Subscriptions</p>
+                <p className="text-xs uppercase tracking-normal text-muted-foreground sm:tracking-[0.14em]">Subscriptions</p>
                 <p className="mt-2 text-xl font-semibold">{subscriptions.length}</p>
               </div>
             </div>

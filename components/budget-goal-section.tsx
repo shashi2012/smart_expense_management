@@ -68,7 +68,7 @@ export function BudgetGoalSection({ budget, goal, monthlySpent, onBudgetChange, 
                 onChange={(event) => setBudgetValue(event.target.value)}
               />
             </div>
-            <Button type="button" className="group self-end" onClick={saveBudget}>
+            <Button type="button" className="group self-end w-full sm:w-auto" onClick={saveBudget}>
               <Save className="h-4 w-4" />
               Save
             </Button>
@@ -79,7 +79,7 @@ export function BudgetGoalSection({ budget, goal, monthlySpent, onBudgetChange, 
               <span className="font-semibold">{formatCurrency(monthlySpent)}</span>
             </div>
             <Progress value={clamp(budgetUsage)} indicatorClassName={budgetUsage > 100 ? "from-red-400 to-rose-400" : budgetUsage > 80 ? "from-amber-300 to-orange-400" : undefined} />
-            <div className="mt-3 flex items-center justify-between gap-3 text-sm">
+            <div className="mt-3 flex flex-wrap items-center justify-between gap-3 text-sm">
               <span className="text-muted-foreground">Remaining amount</span>
               <span className={remainingBudget < 0 ? "font-semibold text-red-300" : "font-semibold text-emerald-300"}>
                 {formatCurrency(remainingBudget)}
@@ -140,7 +140,7 @@ export function BudgetGoalSection({ budget, goal, monthlySpent, onBudgetChange, 
                 onChange={(event) => setGoalValue((current) => ({ ...current, currentSavings: Number(event.target.value) }))}
               />
             </div>
-            <Button type="button" className="group self-end" onClick={saveGoal}>
+            <Button type="button" className="group self-end w-full md:w-auto" onClick={saveGoal}>
               <Save className="h-4 w-4" />
               Save
             </Button>
@@ -151,7 +151,7 @@ export function BudgetGoalSection({ budget, goal, monthlySpent, onBudgetChange, 
               <span className="text-sm font-semibold text-cyan-200">{Math.round(clamp(goalProgress))}%</span>
             </div>
             <Progress value={clamp(goalProgress)} />
-            <div className="mt-3 flex items-center justify-between gap-3 text-sm">
+            <div className="mt-3 flex flex-wrap items-center justify-between gap-3 text-sm">
               <span className="text-muted-foreground">Remaining amount</span>
               <span className="font-semibold">{formatCurrency(Math.max(goal.targetAmount - goal.currentSavings, 0))}</span>
             </div>

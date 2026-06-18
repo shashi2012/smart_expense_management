@@ -30,12 +30,12 @@ export function RecentActivity({ expenses }: { expenses: Expense[] }) {
         <CardContent>
           <div className="space-y-3">
             {recent.map((expense) => (
-              <div key={expense.id} className="flex items-center justify-between gap-3 rounded-lg border border-white/10 bg-white/[0.04] p-3 light:border-slate-200 light:bg-slate-50">
+              <div key={expense.id} className="flex flex-col gap-3 rounded-lg border border-white/10 bg-white/[0.04] p-3 light:border-slate-200 light:bg-slate-50 sm:flex-row sm:items-center sm:justify-between">
                 <div className="min-w-0">
                   <p className="truncate text-sm font-semibold">{expense.description}</p>
                   <p className="mt-1 text-xs text-muted-foreground">{formatDate(expense.date)}</p>
                 </div>
-                <div className="flex shrink-0 items-center gap-3">
+                <div className="flex flex-wrap items-center justify-between gap-3 sm:shrink-0 sm:justify-start">
                   <CategoryPill category={expense.category} compact />
                   <span className="text-sm font-semibold">{formatCurrency(expense.amount)}</span>
                 </div>

@@ -41,14 +41,14 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const Comp = asChild ? Slot : "button";
     if (asChild) {
       return (
-        <Comp className={cn(buttonVariants({ variant, size, className }))} ref={ref} {...props}>
+        <Comp className={cn(buttonVariants({ variant, size, className }))} ref={ref} {...props} suppressHydrationWarning>
           {children}
         </Comp>
       );
     }
 
     return (
-      <Comp className={cn(buttonVariants({ variant, size, className }))} ref={ref} {...props}>
+      <Comp className={cn(buttonVariants({ variant, size, className }))} ref={ref} {...props} suppressHydrationWarning>
         <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/35 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
         {children}
       </Comp>
